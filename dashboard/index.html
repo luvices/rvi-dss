@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pendukung Keputusan RVI | GEMASTIK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-shape circle-1"></div>
+    <div class="bg-shape circle-2"></div>
+    <div class="bg-shape circle-3"></div>
+
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="icon">🔮</span>
+                <h2>RVI <span class="highlight">DSS</span></h2>
+            </div>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#dashboard" class="nav-link active">Dasbor</a></li>
+                <li><a href="#analysis" class="nav-link">Analisis Risiko</a></li>
+                <li><a href="#recommendations" class="nav-link">Tindakan Kebijakan</a></li>
+                <li><a href="#models" class="nav-link">Diagnostik Model</a></li>
+            </ul>
+            <div class="user-profile">
+                <span class="badge">Finalis Nasional</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section id="dashboard" class="scroll-section">
+            <header>
+                <div>
+                    <h1>Pusat Komando</h1>
+                    <p class="subtitle">Sistem Intelegen Kerentanan Wilayah (RVI) - <span id="yearDisplay"></span></p>
+                </div>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="glass-panel kpi-card">
+                    <h3>Total Wilayah Dipantau</h3>
+                    <div class="value" id="kpiRegions">-</div>
+                </div>
+                <div class="glass-panel kpi-card">
+                    <h3>Wilayah Risiko Tinggi</h3>
+                    <div class="value text-danger" id="kpiHighRisk">-</div>
+                </div>
+                <div class="glass-panel kpi-card">
+                    <h3>Skor R² Model Terbaik</h3>
+                    <div class="value text-success" id="kpiModelR2">-</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="scroll-section mt-2">
+            <div class="grid-2-col">
+                <div class="glass-panel">
+                    <h2>⚖️ Kerentanan vs Ketahanan (Radar)</h2>
+                    <canvas id="radarChart"></canvas>
+                    <div class="insight-box mt-1">
+                        <h4>Apa arti grafik ini?</h4>
+                        <p>Grafik radar ini membandingkan rata-rata indeks risiko antara <strong>Top 10 Wilayah Paling Rentan</strong> dan <strong>Top 10 Wilayah Paling Tangguh</strong>.</p>
+                        <p><strong>Risiko Lingkungan</strong>: Ancaman seperti iklim ekstrem. <strong>Kerentanan Sosio-Ekonomi</strong>: Kelemahan ekonomi (Kemiskinan/IPM). <strong>Risiko Kesehatan</strong>: Sanitasi buruk.</p>
+                    </div>
+                </div>
+                <div class="glass-panel">
+                    <h2>📊 Distribusi Risiko</h2>
+                    <canvas id="doughnutChart"></canvas>
+                    <div class="insight-box mt-1">
+                        <h4>Apa arti grafik ini?</h4>
+                        <p>Menunjukkan proporsi wilayah yang masuk ke dalam kategori risiko Tinggi, Menengah, dan Rendah berdasarkan Skor RVI Komposit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2-col mt-2">
+                <div class="glass-panel list-container">
+                    <h2>🚨 Top 10 Wilayah Paling Rentan</h2>
+                    <ul id="vulnerableList" class="region-list"></ul>
+                </div>
+                
+                <div class="glass-panel list-container">
+                    <h2>🛡️ Top 10 Wilayah Paling Tangguh</h2>
+                    <ul id="safestList" class="region-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="scroll-section mt-2">
+            <div class="glass-panel">
+                <h2>🎯 Rekomendasi Tindakan Kebijakan</h2>
+                <p class="text-muted">Dihasilkan oleh analisis *Explainable AI* (XAI) pada sub-indeks komposit.</p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Wilayah</th>
+                                <th>Skor RVI</th>
+                                <th>Tingkat Risiko</th>
+                                <th>Rekomendasi Kebijakan (Aksi)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" class="scroll-section grid-2-col mt-2">
+            <div class="glass-panel">
+                <h2>🧪 Komparasi Performa Auto-ML</h2>
+                <canvas id="modelChart"></canvas>
+            </div>
+            <div class="glass-panel">
+                <h2>🔍 Wawasan Pembaruan Riset (Novelty)</h2>
+                <div class="insight-box">
+                    <h4>Mengapa ini penting bagi pemerintah?</h4>
+                    <p>Alih-alih mengandalkan model *black-box* biasa, Sistem Pendukung Keputusan (DSS) ini membangun <strong>indeks kerentanan komposit</strong> yang berbobot, serta mengadu algoritma *machine learning* paling modern (SOTA) untuk mencari prediksi yang akurat.</p>
+                    <p>Rekomendasi kebijakan yang dihasilkan diturunkan langsung dari eksplanabilitas SHAP, memastikan setiap intervensi secara matematis dapat diandalkan dan berdampak nyata bagi masyarakat.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="dss_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

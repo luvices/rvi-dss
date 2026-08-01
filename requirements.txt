@@ -1,0 +1,8 @@
+xgboost
+lightgbm
+catboost
+shap
+jupyter
+ipykernel
+geopandas
+folium
